@@ -271,11 +271,11 @@ curl -X POST http://localhost:8000/auth/register \
   -d '{"email":"test@example.com","password":"12345678"}'
 ```
 Ожидаемый ответ:
-json
+```json
 {
   "message": "Пользователь успешно зарегистрирован"
 }
-
+```
 2. Вход (логин)
 ```bash
 curl -X POST http://localhost:8000/auth/login \
