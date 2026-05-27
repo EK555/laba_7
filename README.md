@@ -284,7 +284,7 @@ curl -X POST http://localhost:8000/auth/login \
   -c cookies.txt
 ```
 Ожидаемый ответ:
-json
+```json
 {
   "message": "Вход выполнен успешно",
   "user": {
@@ -292,6 +292,7 @@ json
     "email": "test@example.com"
   }
 }
+```
 
 3. Загрузка файла (аватар)
 ```bash
@@ -300,11 +301,12 @@ curl -X POST http://localhost:8000/files/upload \
   -b cookies.txt
 ```
 Ожидаемый ответ:
-json
+```json
 {
   "file_id": "6a176e070e047f45d8820f4f",
   "message": "Файл успешно загружен"
 }
+```
 
 Запомните file_id — он понадобится для следующих шагов.
 
@@ -313,13 +315,14 @@ json
 curl -X GET http://localhost:8000/profile/ -b cookies.txt
 ```
 Ожидаемый ответ:
-json
+```json
 {
   "id": "6a17649b3841a3074d94cb46",
   "email": "test@example.com",
   "avatar_file_id": null,
   "has_avatar": false
 }
+```
 
 5. Установка аватара
 ```bash
@@ -329,13 +332,14 @@ curl -X POST http://localhost:8000/profile/ \
   -b cookies.txt
 ```
 Ожидаемый ответ:
-json
+```json
 {
   "id": "6a17649b3841a3074d94cb46",
   "email": "test@example.com",
   "avatar_file_id": "6a176e070e047f45d8820f4f",
   "has_avatar": true
 }
+```
 
 6. Скачивание файла
 ```bash
@@ -343,10 +347,11 @@ curl -X GET http://localhost:8000/files/6a176e070e047f45d8820f4f \
   -b cookies.txt --output downloaded_avatar.jpg
 ```
 Ожидаемый ответ:
-json
+```json
 {
   200 OK (файл скачан)
 }
+```
 
 7. Проверка безопасности (доступ к чужому файлу)
   1) Зарегистрируйте второго пользователя:
@@ -374,20 +379,22 @@ json
   curl -X GET http://localhost:8000/files/{file_id_2} -b cookies.txt
   ```
   Ожидаемый ответ:
-  json
+  ```json
   {
     "detail": "Нет доступа к этому файлу"
   }
+  ```
 
 8. Удаление файла
 ```bash
 curl -X DELETE http://localhost:8000/files/6a176e070e047f45d8820f4f -b cookies.txt
 ```
 Ожидаемый ответ:
-json
+```json
 {
   204 No Content
 }
+```
 
 9. Проверка MinIO Console
 Откройте браузер: http://localhost:9001
